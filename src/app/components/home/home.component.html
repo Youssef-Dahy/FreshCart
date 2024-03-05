@@ -1,0 +1,189 @@
+<!-- Main Slider -->
+<section class="my-5">
+  <div class="container">
+    <div class="row g-0">
+      <div class="col-md-9">
+        <owl-carousel-o [options]="mainSlideOptions">
+          <ng-template carouselSlide>
+            <img
+              src="assets/images/photocomposition-horizontal-online-shopping-banner.jpg"
+              alt="slider-image-1"
+              height="400"
+            />
+          </ng-template>
+          <ng-template carouselSlide>
+            <img
+              src="assets/images/Download Online shopping concept_101818.jpg"
+              alt="slider-image-2"
+              height="400"
+            />
+          </ng-template>
+          <ng-template carouselSlide>
+            <img
+              src="assets/images/Premium Vector _ Online shopping concept shopping cart with bags standing upon big mobile phone flat vector design_102210.jpg"
+              alt="slider-image-3"
+              height="400"
+            />
+          </ng-template>
+          <ng-template carouselSlide>
+            <img
+              src="assets/images/Premium-Fashioncollection_101357.png"
+              alt="slider-image-4"
+              height="400"
+            />
+          </ng-template>
+          <ng-template carouselSlide>
+            <img
+              src="assets/images/Premium-Fashioncollection1_101716.png"
+              alt="slider-image-5"
+              height="400"
+            />
+          </ng-template>
+        </owl-carousel-o>
+      </div>
+      <div class="col-md-3">
+        <img
+          class="w-100"
+          src="assets/images/Woman-Shopping-Banner.jpg"
+          alt="slider-image-1"
+          height="200"
+        />
+        <img
+          class="w-100"
+          src="assets/images/template-banner-for-online-store.jpg"
+          alt="slider-image-2"
+          height="200"
+        />
+      </div>
+    </div>
+  </div>
+</section>
+<!-- Category Slider -->
+<section *ngIf="categories.length > 0" class="my-3 mb-5">
+  <div class="container">
+    <h2 class="fw-bold py-3">Popular Categories</h2>
+
+    <owl-carousel-o [options]="categoryOptions">
+      <ng-container *ngFor="let category of categories">
+        <ng-template carouselSlide>
+          <img
+            class="mb-3 rounded shadow-sm"
+            height="250px"
+            [src]="category.image"
+            [alt]="category.name"
+            [title]="category.name"
+          />
+          <h3 class="h6 text-center fw-bold">{{ category.name }}</h3>
+        </ng-template>
+      </ng-container>
+    </owl-carousel-o>
+  </div>
+</section>
+<!-- products -->
+<section *ngIf="products.length > 0" class="py-5">
+  <div class="container">
+    <h2 class="fw-bold py-3">Popular Products</h2>
+    <div class="search d-flex justify-content-center align-items-center">
+      <input
+        type="text"
+        class="form-control w-75 mx-auto my-3 search-input"
+        placeholder="Search in Popular Products"
+        [(ngModel)]="term"
+      />
+    </div>
+
+    <div class="row g-4 align-items-center justify-content-center">
+      <div
+        *ngFor="
+          let product of products
+            | paginate
+              : {
+                  id: 'productPaginate',
+                  itemsPerPage: pageSize,
+                  currentPage: currentPage,
+                  totalItems: total
+                }
+            | search : term
+        "
+        class="col-sm-6 col-md-4 col-lg-3 col-xl-2"
+      >
+        <div class="shadow rounded product p-4 h-100">
+          <!-- add to Favorite -->
+          <div
+            *ngIf="!wishListData.includes($any(product._id))"
+            (click)="addFav(product._id)"
+          >
+            <i class="fa-regular fa-heart heart"></i>
+          </div>
+          <!-- Remove From Favorite -->
+          <div
+            *ngIf="wishListData.includes($any(product._id))"
+            (click)="removeFav(product._id)"
+          >
+            <i class="fa-solid fa-heart heart text-danger"></i>
+          </div>
+
+          <header role="button" [routerLink]="['/productdetails', product._id]">
+            <img
+              class="w-100"
+              [src]="product.imageCover"
+              [title]="product.title"
+              [alt]="product.title"
+            />
+            <h3 class="h6 text-center">{{ product.title | cuttext : 3 }}</h3>
+            <h6 class="h6 text-main text-center">
+              {{ product.category.name }}
+            </h6>
+
+            <div
+              class="d-flex align-items-center justify-content-between small text-centers"
+            >
+              <span>{{ product.price | currency : "E£" }}</span>
+              <div
+                class="ms-1 small d-flex align-items-center justify-content-center"
+              >
+                <i
+                  [class.rating-color]="product.ratingsAverage >= num"
+                  class="fas fa-star rating-color small"
+                  *ngFor="let num of [1, 2, 3, 4, 5]"
+                ></i>
+                <span class="text-muted">{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </header>
+
+          <footer>
+            <div class="d-flex justify-content-center align-items-center">
+              <button
+                (click)="addProduct(product._id, btnAdd)"
+                #btnAdd
+                class="main-btn text-center w-100 btn mt-2"
+              >
+                <i class="fa-solid fa-cart-plus"></i>
+                <span class="fw-bold ms-1">Add to Cart</span>
+              </button>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-center mt-4">
+    <pagination-controls
+      id="productPaginate"
+      (pageChange)="pageChanged($event)"
+      (pageBoundsCorrection)="pageChanged($event)"
+      [maxSize]="5"
+      [directionLinks]="true"
+      [autoHide]="true"
+      [responsive]="true"
+      previousLabel="Previous"
+      nextLabel="Next"
+      screenReaderPaginationLabel="Pagination"
+      screenReaderPageLabel="page"
+      screenReaderCurrentLabel="You're on page"
+    >
+    </pagination-controls>
+  </div>
+</section>

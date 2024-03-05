@@ -1,0 +1,112 @@
+<section
+  class="py-5 rounded shadow bg-main-light w-75 mx-auto p-3 mb-5"
+  *ngIf="cartDetails; else msg"
+>
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center mb-2">
+      <h1 class="h2 fw-bold">Shop Cart</h1>
+      <button
+        (click)="clear()"
+        class="flex-shrink-0 btn btn-sm btn-outline-danger btn-clear"
+      >
+        Clear Cart
+      </button>
+    </div>
+    <div>
+      Total Price:
+      <span class="text-main">{{
+        cartDetails.totalCartPrice | currency : "E£ "
+      }}</span>
+    </div>
+
+    <div
+      class="row border-bottom py-2"
+      *ngFor="let item of cartDetails.products"
+    >
+      <div class="col-md-1">
+        <img
+          class="w-100"
+          [src]="item.product.imageCover"
+          [alt]="item.product.title"
+        />
+      </div>
+      <div class="col-md-11 d-flex justify-content-between align-items-center">
+        <div>
+          <h3 class="h6">{{ item.product.title }}</h3>
+          <div class="small mb-0">
+            Price:
+            <span class="text-main"> {{ item.price | currency : "EGP " }}</span>
+          </div>
+          <button
+            (click)="removeItem(item.product._id, btnRemove)"
+            class="btn m-0 p-0 text-danger"
+            #btnRemove
+          >
+            <i class="fas fa-trash-can me-1"></i>Remove
+          </button>
+        </div>
+        <div class="d-flex justify-content-center align-content-center">
+          <button
+            (click)="changeCount(item.count - 1, item.product._id, btn1, btn2)"
+            class="btn btn-sm border-success btn-count"
+            #btn1
+          >
+            -
+          </button>
+          <span class="m-1">{{ item.count }} </span>
+          <button
+            (click)="changeCount(item.count + 1, item.product._id, btn1, btn2)"
+            class="btn btn-sm border-success btn-count"
+            #btn2
+          >
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center">
+      <button
+        [routerLink]="['/payment', cartDetails._id]"
+        class="btn btn-primary w-25 mt-4 p-2 btn-payment"
+      >
+        <span class="fw-bold me-2">Online Payment</span>
+        <img
+          width="45px"
+          src="assets/images/master-card.png"
+          alt="master-card"
+        />
+      </button>
+    </div>
+  </div>
+</section>
+
+<ng-template #msg>
+  <!-- <div class="alert alert-danger m-0">
+    <div class="d-flex">
+      <span class="me-2"
+        ><i class="fa-solid fa-triangle-exclamation fa-2xl"></i
+      ></span>
+      <div>
+        <h2 class="h5 fw-bold">Your Cart Is Empty.</h2>
+        <p class="small">
+          please use the search bar or menu to find what you looking for and add
+          to your cart
+        </p>
+      </div>
+    </div>
+  </div> -->
+  <div class="contaienr">
+    <div class="row">
+      <div class="col-md-12">
+        <img
+          routerLink="/home"
+          role="button"
+          class="w-100 empty"
+          src="assets/images/shooping.png"
+          alt="shopping"
+        />
+      </div>
+    </div>
+  </div>
+</ng-template>

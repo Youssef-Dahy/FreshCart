@@ -1,0 +1,106 @@
+<section *ngIf="products.length > 0; else msg" class="py-5">
+  <div class="container">
+    <div class="row g-4 align-items-center justify-content-center">
+      <div
+        *ngFor="let product of products"
+        class="col-sm-6 col-md-4 col-lg-3 col-xl-2"
+      >
+        <div class="shadow rounded product p-4 h-100">
+          <!-- add to Favorite -->
+          <div
+            *ngIf="!wishListData.includes($any(product._id))"
+            (click)="addFav(product._id)"
+          >
+            <i class="fa-regular fa-heart heart"></i>
+          </div>
+          <!-- Remove From Favorite -->
+          <div
+            *ngIf="wishListData.includes($any(product._id))"
+            (click)="removeFav(product._id)"
+          >
+            <i class="fa-solid fa-heart heart text-danger"></i>
+          </div>
+
+          <header role="button" [routerLink]="['/productdetails', product._id]">
+            <img
+              class="w-100"
+              [src]="product.imageCover"
+              [title]="product.title"
+              [alt]="product.title"
+            />
+            <h3 class="h6 text-center">{{ product.title | cuttext : 3 }}</h3>
+            <h6 class="h6 text-main text-center">
+              {{ product.category.name }}
+            </h6>
+
+            <div
+              class="d-flex align-items-center justify-content-between small text-centers"
+            >
+              <span>{{ product.price | currency : "E£" }}</span>
+              <div
+                class="ms-1 small d-flex align-items-center justify-content-center"
+              >
+                <i
+                  [class.rating-color]="product.ratingsAverage >= num"
+                  class="fas fa-star rating-color small"
+                  *ngFor="let num of [1, 2, 3, 4, 5]"
+                ></i>
+                <span class="text-muted">{{ product.ratingsAverage }}</span>
+              </div>
+            </div>
+          </header>
+
+          <footer>
+            <div class="d-flex justify-content-center align-items-center">
+              <button
+                (click)="addProduct(product._id, btnAdd)"
+                #btnAdd
+                class="main-btn text-center w-100 btn mt-2"
+              >
+                <i class="fa-solid fa-cart-plus"></i>
+                <span class="fw-bold ms-1">Add to Cart</span>
+              </button>
+            </div>
+          </footer>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<ng-template #msg>
+  <section class="py-4 mb-5">
+    <div class="contaienr">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="text-center">
+            <video width="350px" height="305" autoplay>
+              <source
+                src="./assets/images/wishlist-empty-desktop.mp4"
+                type="video/mp4"
+              />
+              <source
+                src="./assets/images/wishlist-empty-desktop.ogg"
+                type="video/ogg"
+              />
+              <source
+                src="./assets/images/wishlist-empty-desktop.wav"
+                type="video/wav"
+              />
+            </video>
+          </div>
+          <div class="text-center">
+            <h2 class="h5 fw-bold">Your wish list is empty.</h2>
+            <p class="text-muted">
+              Start adding items you love to your wishlist by tapping on the
+              heart icon
+            </p>
+            <button routerLink="/home" class="btn main-btn btn-wishlist">
+              create new wishList
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</ng-template>

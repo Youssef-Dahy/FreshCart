@@ -1,0 +1,30 @@
+.paid {
+  border-radius: 5px;
+  background-color: #d8e2fa;
+  color: #104fa7;
+  text-align: center;
+}
+.price {
+  border-radius: 5px;
+  background-color: #0aad0a;
+  color: white;
+  text-align: center;
+}
+.delivered {
+  border-radius: 5px;
+  background-color: #dc3545;
+  color: #000000;
+  text-align: center;
+}
+@media screen and (min-width: 1024px) and (min-height: 800px) {
+  .paid,
+  .delivered,
+  .price {
+    width: 100% !important;
+  }
+}
+.allorder {
+  background-image: url(../../../assets/images/light-patten.svg);
+  background-position: center;
+  background-size: cover;
+}

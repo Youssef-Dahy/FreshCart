@@ -1,0 +1,43 @@
+<section>
+  <div class="container py-5">
+    <div
+      class="row rounded shadow-sm mb-4 allorder"
+      *ngFor="let item of Orders"
+    >
+      <div class="col-md-9">
+        <div class="div p-4">
+          <p><span class="fw-bold">Name: </span>{{ item["user"]["name"] }}</p>
+          <p><span class="fw-bold">Phone: </span>{{ item["user"]["phone"] }}</p>
+          <h5>Adress Details:</h5>
+          <p>Details: {{ item["shippingAddress"]["details"] }}</p>
+          <p>City: {{ item["shippingAddress"]["city"] }}</p>
+        </div>
+      </div>
+
+      <div class="h4 col-md-3">
+        <div class="p-4">
+          <h2 class="h4">
+            TotalPrice:
+            <div class="price p-1 w-50">
+              {{ item["totalOrderPrice"] }}
+              <i class="fa-solid fa-money-bill"></i>
+            </div>
+          </h2>
+
+          <h2 class="h4">
+            IS Paid:
+            <div class="p-1 paid w-50">
+              {{ item["isPaid"] }} <i class="fa-solid fa-check"></i>
+            </div>
+          </h2>
+          <h2 class="h4">
+            Is Delivered:
+            <div class="p-1 paid w-50 delivered">
+              {{ item["isDelivered"] }} <i class="fa-solid fa-xmark"></i>
+            </div>
+          </h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

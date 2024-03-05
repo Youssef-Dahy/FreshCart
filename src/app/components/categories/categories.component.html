@@ -1,0 +1,28 @@
+<section class="my-5">
+  <div class="container">
+    <h2 class="fw-bold py-3">
+      Categories In Store
+      <i class="fa-solid fa-store text-main"></i>
+    </h2>
+    <div class="row g-4 justify-content-center">
+      <div
+        *ngFor="let category of categoryData"
+        class="col-sm-6 col-md-4 col-lg-3"
+      >
+        <div
+          [routerLink]="['/categorydetails', category._id]"
+          role="button"
+          class="border border-2 rounded shadow p-2"
+        >
+          <img
+            class="w-100 mb-2"
+            height="300px"
+            [src]="category.image"
+            [alt]="category.name"
+          />
+          <h3 class="text-center fw-bold">{{ category.name }}</h3>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

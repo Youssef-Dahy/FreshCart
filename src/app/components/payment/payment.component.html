@@ -1,0 +1,48 @@
+<section id="section" class="py-5 mt-3 w-50 rounded shadow mx-auto mb-5">
+  <div class="container">
+    <div class="text-center mb-2">
+      <img class="w-25" src="assets/images/freshcart-logo.svg" alt="" />
+      <h1 class="fw-bold h2">
+        Check-Out
+        <span><i class="fa-solid fa-money-check-dollar text-main"></i></span>
+      </h1>
+    </div>
+    <form [formGroup]="orderForm" (ngSubmit)="handelForm()">
+      <div class="form-item mb-2">
+        <label for="details">Details</label>
+        <input
+          class="form-control"
+          type="text"
+          id="details"
+          formControlName="details"
+        />
+      </div>
+
+      <div class="form-item mb-2">
+        <label for="phone">Phone</label>
+        <input
+          class="form-control"
+          type="tel"
+          id="phone"
+          formControlName="phone"
+        />
+      </div>
+
+      <div class="form-item">
+        <label for="city">City</label>
+        <input
+          class="form-control"
+          type="text"
+          id="city"
+          formControlName="city"
+        />
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center">
+        <button class="btn btn-primary w-100 mt-4 p-2 btn-payment">
+          CheckOut
+        </button>
+      </div>
+    </form>
+  </div>
+</section>

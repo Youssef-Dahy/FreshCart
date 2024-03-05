@@ -1,0 +1,23 @@
+.btn-payment:hover {
+  color: #fff;
+  background-color: #2063c6;
+}
+
+@media (max-width: 433px) {
+  #section {
+    width: 100% !important;
+    padding: 20px !important ;
+  }
+}
+
+/* Media query for screen size 375x812 */
+@media (max-width: 375px) {
+  #section {
+    width: 100% !important;
+    padding: 20px !important ;
+  }
+  .container {
+    width: 100%;
+    padding: 20px !important ;
+  }
+}

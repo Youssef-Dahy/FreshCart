@@ -1,0 +1,95 @@
+.btn:hover {
+  color: #030303;
+  background-color: transparent;
+  border-color: var(--bs-btn-hover-border-color);
+}
+.text-danger:hover {
+  color: rgb(230, 107, 107);
+}
+.btn-clear:hover {
+  background-color: #dc3545;
+  color: #fff;
+}
+.btn-payment:hover {
+  color: #fff;
+  background-color: #2063c6;
+}
+
+@media (max-width: 375px) {
+  .btn-payment {
+    width: 100% !important;
+    padding: 20px !important ;
+  }
+}
+@media (max-width: 360px) {
+  .btn-payment {
+    width: 75% !important;
+  }
+}
+@media (max-width: 393px) {
+  .btn-payment {
+    width: 100% !important;
+  }
+}
+@media (max-width: 433px) {
+  .btn-payment {
+    width: 100% !important;
+  }
+}
+@media (max-width: 412px) {
+  .btn-payment {
+    width: 100% !important;
+  }
+}
+@media only screen and (max-width: 360px) and (min-height: 740px) {
+  .btn-payment {
+    width: 100% !important;
+    flex-shrink: 0;
+    padding: 5px !important;
+  }
+  .btn-payment span {
+    font-size: 10px;
+  }
+}
+
+@media only screen and (max-width: 1024px) and (min-height: 800px) {
+  .btn-payment {
+    width: 100% !important;
+  }
+}
+
+@media only screen and (max-width: 688px) and (min-height: 1031px) {
+  .btn-payment {
+    width: 100% !important;
+  }
+}
+@media (max-width: 375px) {
+  .empty {
+    width: 100%;
+    height: fit-content !important;
+  }
+}
+@media (max-width: 360px) {
+  .empty {
+    width: 100% !important;
+    height: fit-content !important;
+  }
+}
+@media (max-width: 393px) {
+  .empty {
+    width: 100% !important;
+    height: fit-content !important;
+  }
+}
+@media (max-width: 433px) {
+  .empty {
+    width: 100% !important;
+    height: fit-content !important;
+  }
+}
+@media (max-width: 412px) {
+  .empty {
+    width: 100% !important;
+    height: fit-content !important;
+  }
+}

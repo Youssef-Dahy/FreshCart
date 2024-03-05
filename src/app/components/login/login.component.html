@@ -1,0 +1,91 @@
+<div class="container my-5">
+  <div class="w-75 mx-auto shadow rounded p-3 login">
+    <h1>Login Now:</h1>
+
+    <form [formGroup]="loginForm" (ngSubmit)="handleForm()">
+      <div class="form-group mb-3">
+        <label for="email">Email</label>
+        <input
+          formControlName="email"
+          type="email"
+          id="email"
+          class="form-control"
+        />
+        <div
+          *ngIf="
+            loginForm.get('email')?.errors && loginForm.get('email')?.touched
+          "
+          class="alert alert-danger w-75 mx-auto show"
+        >
+          <p *ngIf="loginForm.get('email')?.getError('required')" class="mb-0">
+            <span class="fas fa-exclamation-circle me-1"></span>
+            <span>Required</span>
+          </p>
+          <p *ngIf="loginForm.get('email')?.getError('email')" class="mb-0">
+            <span class="fas fa-exclamation-circle me-1"></span>
+            <span>InValid Format</span>
+          </p>
+        </div>
+      </div>
+      <div class="form-group mb-3">
+        <label for="password">Password</label>
+        <input
+          formControlName="password"
+          type="password"
+          id="password"
+          class="form-control"
+        />
+
+        <div
+          *ngIf="
+            loginForm.get('password')?.errors &&
+            loginForm.get('password')?.touched
+          "
+          class="alert alert-danger w-75 mx-auto show"
+        >
+          <p
+            *ngIf="loginForm.get('password')?.getError('required')"
+            class="mb-0"
+          >
+            <span class="fas fa-exclamation-circle me-1"></span>
+            <span>Required</span>
+          </p>
+          <p
+            *ngIf="loginForm.get('password')?.getError('pattern')"
+            class="mb-0"
+          >
+            <span class="fas fa-exclamation-circle me-1"></span>
+            <span
+              >Must be 9 characters and include capital letters and small
+              letters and (&,@,*)</span
+            >
+          </p>
+        </div>
+      </div>
+
+      <div class="text-center">
+        <a
+          routerLinkActive="active"
+          routerLink="/forgotpassword"
+          class="text-primary btn-forget"
+          >Forget Password?</a
+        >
+      </div>
+
+      <button
+        [disabled]="loginForm.invalid"
+        class="btn bg-main text-white d-block ms-auto"
+      >
+        Login
+        <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+      </button>
+    </form>
+
+    <div
+      *ngIf="errMessage"
+      class="alert alert-danger m-0 my-1 text-center show"
+    >
+      {{ errMessage }}
+    </div>
+  </div>
+</div>

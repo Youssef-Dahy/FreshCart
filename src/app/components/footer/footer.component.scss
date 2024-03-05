@@ -1,0 +1,111 @@
+:host {
+  margin-top: auto;
+}
+.form-control:focus {
+  color: var(--bs-body-color);
+  background-color: var(--bs-body-bg);
+  border-color: #0aad0a;
+  outline: 0;
+  box-shadow: 0 0 0 0.25rem rgb(0 255 87 / 25%);
+}
+@media (max-width: 433px) {
+  .rg-content h5 {
+    font-size: 12px;
+  }
+  .rg-content img {
+    width: 50px;
+  }
+}
+
+/* Media query for screen size 375x812 */
+@media (max-width: 375px) {
+  .rg-content h5 {
+    font-size: 12px;
+  }
+  .rg-content img {
+    width: 50px;
+  }
+}
+
+/* Media query for screen size 412x846 */
+@media (max-width: 412px) {
+  .rg-content h5 {
+    font-size: 12px;
+  }
+  .rg-content img {
+    width: 50px;
+  }
+}
+
+/* Media query for screen size 360x740 */
+@media (max-width: 360px) {
+  .rg-content h5 {
+    font-size: 10px;
+  }
+  .rg-content img {
+    width: 40px !important;
+  }
+}
+
+/* Media query for screen size 393x786 */
+@media (max-width: 393px) {
+  .rg-content h5 {
+    font-size: 12px;
+  }
+  .rg-content img {
+    width: 50px;
+  }
+}
+
+/* Additional media queries for .lf-content */
+@media (max-width: 433px) {
+  .lf-content h5 {
+    font-size: 12px;
+  }
+  .lf-content img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 375px) {
+  .lf-content h5 {
+    font-size: 12px;
+  }
+  .lf-content img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 412px) {
+  .lf-content h5 {
+    font-size: 12px;
+  }
+  .lf-content img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 360px) {
+  .lf-content h5 {
+    font-size: 14px;
+  }
+  .lf-content img {
+    width: 70px !important;
+  }
+  .footForm button,
+  input {
+    width: 50%;
+  }
+  .footRow {
+    width: 100%;
+  }
+}
+
+@media (max-width: 393px) {
+  .lf-content h5 {
+    font-size: 10px;
+  }
+  .lf-content img {
+    width: 75px;
+  }
+}

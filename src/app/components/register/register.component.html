@@ -1,0 +1,193 @@
+<section id="registerSection">
+  <div class="container my-5">
+    <div class="w-75 mx-auto shadow rounded p-3 register">
+      <h1>Register Now:</h1>
+
+      <form [formGroup]="registerForm" (ngSubmit)="handleForm()">
+        <div class="form-group mb-3">
+          <label for="fullName">Full Name</label>
+          <input
+            formControlName="name"
+            type="text"
+            id="fullName"
+            class="form-control"
+          />
+          <div
+            *ngIf="
+              registerForm.get('name')?.errors &&
+              registerForm.get('name')?.touched
+            "
+            class="alert alert-danger w-75 mx-auto show"
+          >
+            <p
+              *ngIf="registerForm.get('name')?.getError('required')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Required</span>
+            </p>
+            <p
+              *ngIf="registerForm.get('name')?.getError('minlength')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>min Length should be 3</span>
+            </p>
+            <p
+              *ngIf="registerForm.get('name')?.getError('maxlength')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>max Length should be 20</span>
+            </p>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="email">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            id="email"
+            class="form-control"
+          />
+          <div
+            *ngIf="
+              registerForm.get('email')?.errors &&
+              registerForm.get('email')?.touched
+            "
+            class="alert alert-danger w-75 mx-auto show"
+          >
+            <p
+              *ngIf="registerForm.get('email')?.getError('required')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Required</span>
+            </p>
+            <p
+              *ngIf="registerForm.get('email')?.getError('email')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>InValid Format</span>
+            </p>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="password">Password</label>
+          <input
+            formControlName="password"
+            type="password"
+            id="password"
+            class="form-control"
+          />
+
+          <div
+            *ngIf="
+              registerForm.get('password')?.errors &&
+              registerForm.get('password')?.touched
+            "
+            class="alert alert-danger w-75 mx-auto show"
+          >
+            <p
+              *ngIf="registerForm.get('password')?.getError('required')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Required</span>
+            </p>
+            <p
+              *ngIf="registerForm.get('password')?.getError('pattern')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span
+                >Must be 9 characters and include capital letters and small
+                letters and (&,@,*)</span
+              >
+            </p>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="repassword">RePassword</label>
+          <input
+            formControlName="rePassword"
+            type="password"
+            id="repassword"
+            class="form-control"
+          />
+
+          <div
+            *ngIf="
+              registerForm.get('rePassword')?.errors &&
+              registerForm.get('rePassword')?.touched
+            "
+            class="alert alert-danger w-75 mx-auto show"
+          >
+            <p
+              *ngIf="registerForm.get('rePassword')?.getError('required')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Required</span>
+            </p>
+            <p
+              *ngIf="
+                registerForm.get('rePassword')?.getError('mismatchedpasswords')
+              "
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Password confirmation is incorrect</span>
+            </p>
+          </div>
+        </div>
+        <div class="form-group mb-3">
+          <label for="phone">Phone</label>
+          <input
+            formControlName="phone"
+            type="tel"
+            id="phone"
+            class="form-control"
+          />
+          <div
+            *ngIf="
+              registerForm.get('phone')?.errors &&
+              registerForm.get('phone')?.touched
+            "
+            class="alert alert-danger w-75 mx-auto show"
+          >
+            <p
+              *ngIf="registerForm.get('phone')?.getError('required')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Required</span>
+            </p>
+            <p
+              *ngIf="registerForm.get('phone')?.getError('pattern')"
+              class="mb-0"
+            >
+              <span class="fas fa-exclamation-circle me-1"></span>
+              <span>Accept only Egypt Phone Numbers</span>
+            </p>
+          </div>
+        </div>
+        <button
+          [disabled]="registerForm.invalid"
+          class="btn bg-main text-white d-block ms-auto"
+        >
+          Register
+          <span *ngIf="isLoading"><i class="fas fa-spin fa-spinner"></i></span>
+        </button>
+      </form>
+
+      <div
+        *ngIf="errMessage"
+        class="alert alert-danger m-0 my-1 text-center show"
+      >
+        {{ errMessage }}
+      </div>
+    </div>
+  </div>
+</section>
